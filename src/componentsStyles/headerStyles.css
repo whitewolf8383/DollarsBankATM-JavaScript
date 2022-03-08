@@ -1,0 +1,14 @@
+.header-displayBox {
+  border: dashed 1px rgb(0,0,0);
+  height: 125px;
+  margin: auto;
+  margin-top: 132px;
+  padding-top: 17px;
+  width: 800px;
+}
+.header-displayName {
+  color: #000;
+  font-family: 'Roboto';
+  font-size: 75px;
+  font-weight: 400;
+}
