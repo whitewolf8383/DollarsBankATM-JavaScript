@@ -1,0 +1,47 @@
+h2 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  line-height: 45px;
+}
+.login-div {
+  margin-top: 22px;
+}
+.login-userDiv {
+  margin-top: 77px;
+}
+h4 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-top: 15px;
+}
+.login-userInput {
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+  display: block;
+  height: 64px;
+  margin: auto;
+  text-align: center;
+  width: 468px;
+}
+.login-enter-btn {
+  background-color: #11D825;
+  border: solid 1px rgba(0,0,0,0.3);
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+  border-radius: 25px;
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: bold;
+  height: 78px;
+  margin-top: 68px;
+  width: 232px;
+}
+.login-invalid {
+  color: red;
+  font-size: 20px;
+  margin-top: 5px;
+}
