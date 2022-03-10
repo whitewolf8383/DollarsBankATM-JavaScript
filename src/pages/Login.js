@@ -1,14 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import DollarsBankDB from '../dollarsBankDB';
 import '../componentsStyles/loginStyles.css';
 
 export default function Login() {
   const [warning, setWarning] = useState('none');
+  const [userID, setUserID] = useState('000000');
+  const [pin, setPin] = useState('000000');
 
   const checkUserData = () => {
-    (warning == 'none') ? setWarning('block') : setWarning('none');
+    let counter = 0;
+    let approved = false;
+    let userName = ''
+    DollarsBankDB.map((user) => {
+      
+      if(userID === user.userID)
+        if(pin === user.userPin) {
+          approved = true 
+          userName = user.name
+        }
+        // Set warning if pin doesn't match
+        else setWarning('block')
+      else counter++;
+      // Set warning if no user found
+      if(counter === DollarsBankDB.length) setWarning('block');
+    })
+
+    if(approved) gotoMain(userID, pin, userName);
+
   }
 
-  useEffect(() => {}, [warning])
+  const gotoMain = (userID, pin, userName) => {
+    // Create session token
+    const userToken = 'TK321654' + userID + pin + '456123';
+    sessionStorage.setItem('dollarsBankToken', userToken);
+    sessionStorage.setItem('dollarsBankUser', userName);
+    // Move to main
+    window.location.href = 'main';
+  }
+
+  const handleUserID = (event) => {
+    setUserID(event.target.value);
+  }
+
+  const handlePin = (event) => {
+    setPin(event.target.value);
+  }
+
+  useEffect(() => {}, [warning, userID, pin]);
 
   return(
     <React.Fragment>
@@ -18,9 +56,9 @@ export default function Login() {
       </div>
       <div className='login-userDiv'>
         <h4>UserID</h4>
-        <input className='login-userInput' type='input' id='userid' />
+        <input className='login-userInput' onChange={handleUserID} id='userid' />
         <h4>PIN</h4>
-        <input className='login-userInput' type='input' id='pin' />
+        <input className='login-userInput' onChange={handlePin} id='pin' />
         <button className='login-enter-btn' onClick={() => checkUserData()}>ENTER</button>
       </div>
       <h3 style={{display: warning}} className='login-invalid'>Incorrect UserID and PIN combination! Please try again.</h3>

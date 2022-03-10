@@ -9,23 +9,28 @@ export default function Main() {
   const handlePageChange = () => {
     switch(selection){
       case '1':
-        console.log('Selected 1');
+        window.location.href = 'account-balance';
         break;
       case '2':
-        console.log('Selected 2');
+        window.location.href = 'transactions';
         break;
       case '3':
-        console.log('Selected 3');
+        window.location.href = 'change-pin';
         break;
       case '4':
-        console.log('Selected 4');
+        window.location.href = 'withdraw';
         break;
       case '5':
-        console.log('Selected 5');
+        window.location.href = 'deposit';
         break;
       case '6':
-        console.log('Selected 6');
+        window.location.href = 'transfer';
         break;
+      case '7':
+        window.sessionStorage.removeItem('dollarsBankToken');
+        window.sessionStorage.removeItem('dollarsBankUser');
+        window.location.href = 'login';
+        break
       default:
         setInputError('block');
     }
@@ -35,7 +40,9 @@ export default function Main() {
     setSelection(event.target.value);
   }
 
-  useEffect(() => {}, [selection])
+  useEffect(() => {
+    setUser(window.sessionStorage.getItem('dollarsBankUser'));
+  }, [selection])
 
   return(
     <React.Fragment>
@@ -50,6 +57,7 @@ export default function Main() {
         <p>Enter 4: Withdraw</p>
         <p>Enter 5: Deposit</p>
         <p>Enter 6: Transfer</p>
+        <p>Enter 7: Logout</p>
       </div>
       <input className='main-userInput' onChange={handleChange} placeholder='Number' />
       <button className='main-submit-btn' onClick={() => handlePageChange()} >ENTER</button>

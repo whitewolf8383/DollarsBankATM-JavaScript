@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import DollarsBankDB from '../dollarsBankDB';
 import '../componentsStyles/accountBalanceStyles.css';
 
 export default function AccountBalance() {
   const [user, setUser] = useState('User');
   const [checking, setChecking] = useState(0);
   const [savings, setSavings] = useState(0);
+
+  useEffect(() => {
+    setUser(window.sessionStorage.getItem('dollarsBankUser'));
+    let userID = window.sessionStorage.getItem('dollarsBankToken').substring(8, 14)
+
+    DollarsBankDB.map((user) => {
+      if(userID === user.userID) {
+        setChecking(user.checking.accountBalance);
+        setSavings(user.savings.accountBalance);
+      }
+    })
+  }, [])
 
   return(
     <React.Fragment>
