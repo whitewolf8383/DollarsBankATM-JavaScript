@@ -1,0 +1,47 @@
+.transactions-div {
+  margin-top: 22px;
+}
+.transactions-div h2 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  line-height: 45px;
+}
+.transactions-transactionBox {
+  border: solid 1px #000;
+  height: 422px;
+  margin: auto;
+  margin-bottom: 35px;
+  overflow-y: scroll;
+  width: 800px;
+}
+.transactions-trans-div {
+  border: dashed 1px #000;
+  height: 110px;
+  line-height: 45px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 8px;
+  width: 700px;
+}
+.transactions-trans-div p {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+}
+.transactions-btn {
+  background-color: #11D825;
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.3);
+  color: #000;
+  font-family: 'Roboto';
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+}

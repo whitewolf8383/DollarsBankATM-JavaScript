@@ -1,0 +1,34 @@
+.AB-div {
+  margin-top: 22px;
+}
+.AB-div h2{
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  line-height: 45px;
+}
+.AB-display-div {
+  margin-top: 73px;
+  margin-bottom: 153px;
+}
+.AB-display-div h3 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 50px;
+}
+.AB-btn {
+  background-color: #11D825;
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.3);
+  color: #000;
+  font-family: 'Roboto';
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+}

@@ -1,0 +1,74 @@
+.deposit-div {
+  margin-top: 22px;
+}
+.deposit-div h2 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  line-height: 45px;
+}
+.deposit-input {
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+  display: block;
+  font-size: 25px;
+  height: 70px;
+  letter-spacing: 4px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.deposit-display-div {
+  margin-bottom: 25px;
+}
+.deposit-options {
+  line-height: 45px;
+  margin: auto;
+  margin-top: 25px;
+  width: 330px;
+  text-align: left;
+}
+.deposit-display-div p {
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 4px;
+}
+.transfer-submit-btn {
+  background-color: #2040AF;
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.4);
+  color: #fff;
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 700;
+  height: 60px;
+  letter-spacing: 4px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 200px;
+}
+.transfer-error {
+  color: red;
+  font-family: 'Roboto';
+  font-size: 25px;
+}
+.transfer-cancel-btn {
+  background-color: #F52E2E;
+  border: solid 1px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.4);
+  color: #000;
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin: auto;
+  padding: 10px 30px;
+  text-decoration: none;
+}

@@ -35,9 +35,7 @@ export default function Main() {
     setSelection(event.target.value);
   }
 
-  useEffect(() => {
-  
-  }, [selection])
+  useEffect(() => {}, [selection])
 
   return(
     <React.Fragment>

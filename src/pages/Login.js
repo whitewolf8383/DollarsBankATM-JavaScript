@@ -8,9 +8,7 @@ export default function Login() {
     (warning == 'none') ? setWarning('block') : setWarning('none');
   }
 
-  useEffect(() => {
-
-  }, [warning])
+  useEffect(() => {}, [warning])
 
   return(
     <React.Fragment>

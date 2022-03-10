@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../componentsStyles/transactionStyles.css';
 
 export default function Transfer() {
+  const [user, setUser] = useState('User');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [withdrawError, setWithdrawError] = useState('block');
+  const [number, setNumber] = useState('0');
+  const [amount, setAmount] = useState(0);
+
+  const handleSubmit = () => {
+    console.log('Submit handled');
+  }
+
+  const handleNumber = (event) => {
+    setNumber(event.target.value);
+    console.log('Number ' + number);
+  }
+
+  const handleAmount = (event) => {
+    setAmount(event.target.value);
+    console.log('Amount ' + amount);
+  }
+
+  useEffect(() => {}, [number, amount])
+
   return(
-    <h1>From Transfer Page</h1>
+    <React.Fragment>
+      <div className='transaction-div'>
+      <h2>Welcome {user}!</h2>
+      <h2>Please make your transfer selection.</h2>
+    </div>
+    <div className='transaction-display-div'>
+      <div style={{width: '530px'}} className='transaction-options'>
+        <p>ENTER 1: Checking to Savings</p>
+        <p>ENTER 2: Savings to Checking</p>
+      </div>
+      <input style={{width: '164px'}} className='transaction-input' onChange={handleNumber} placeholder='Number' />
+      <input style={{width: '250px'}} className='transaction-input' onChange={handleAmount} placeholder='Amount' />
+      <button className='transaction-submit-btn' type='submit' onClick={() => handleSubmit()}>SUBMIT</button>
+      <p style={{display: withdrawError}} className='transaction-error'>{errorMessage}</p>
+    </div>
+    <Link className='transaction-cancel-btn' to='/main'>CANCEL</Link>
+    </React.Fragment>
   );
 }
