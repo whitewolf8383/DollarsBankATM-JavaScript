@@ -1,32 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Transaction from './Transaction';
 import '../componentsStyles/transactionsStyles.css';
+import transactions from '../dollarsBankTransactions.json';
 
 export default function Transactions() {
-  const [user, setUser] = useState('User');
+  const [user, setUser] = useState(window.sessionStorage.getItem('dollarsBankUser'));
+  const [userInfo, setUserInfo] = useState(JSON.parse(user));
 
   return(
     <React.Fragment>
       <div className='transactions-div'>
-        <h2>Welcome {user}!</h2>
+        <h2>Welcome {userInfo.name}!</h2>
         <h2>Your Recent Transactions.</h2>
       </div>
       <div className='transactions-transactionBox'>
-        <div className='transactions-trans-div'>
-          <p>Transfered funds, checking to savings Amount of $200.00 on March 10, 2022.</p>
-        </div>
-        <div className='transactions-trans-div'>
-          <p>Transfered funds, checking to savings Amount of $200.00 on March 10, 2022.</p>
-        </div>
-        <div className='transactions-trans-div'>
-          <p>Transfered funds, checking to savings Amount of $200.00 on March 10, 2022.</p>
-        </div>
-        <div className='transactions-trans-div'>
-          <p>Transfered funds, checking to savings Amount of $200.00 on March 10, 2022.</p>
-        </div>
-        <div className='transactions-trans-div'>
-          <p>Transfered funds, checking to savings Amount of $200.00 on March 10, 2022.</p>
-        </div>
+        {
+          transactions.map((transData, index) => {
+            return(
+              <div className='transactions-trans-div' key={index}>
+                <Transaction transData={transData}/>
+              </div>
+            )
+          })
+        }
       </div>
       <Link className='transactions-btn' to='/main'>RETURN</Link>
     </React.Fragment>

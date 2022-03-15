@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../componentsStyles/mainStyles.css';
 
 export default function Main() {
-  const [user, setUser] = useState('User');
   const [selection, setSelection] = useState('');
   const [inputError, setInputError] = useState('none');
+  const [userInfo, setUserInfo] = useState({});
 
   const handlePageChange = () => {
     switch(selection){
       case '1':
-        window.location.href = 'account-balance';
+        window.location.href = 'values';
         break;
       case '2':
         window.location.href = 'transactions';
@@ -41,13 +41,14 @@ export default function Main() {
   }
 
   useEffect(() => {
-    setUser(window.sessionStorage.getItem('dollarsBankUser'));
+    const user = window.sessionStorage.getItem('dollarsBankUser');
+    setUserInfo(JSON.parse(user));
   }, [selection])
 
   return(
     <React.Fragment>
       <div className='main-div'>
-        <h2>Welcome {user}!</h2>
+        <h2>Welcome {userInfo.name}!</h2>
         <h2>Please make your selection.</h2>
       </div>
       <div className='main-selection-div'>

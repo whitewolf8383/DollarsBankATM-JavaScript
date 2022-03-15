@@ -10,13 +10,13 @@ export default function Login() {
   const checkUserData = () => {
     let counter = 0;
     let approved = false;
-    let userName = ''
+    let currentUser = {};
     DollarsBankDB.map((user) => {
       
       if(userID === user.userID)
         if(pin === user.userPin) {
-          approved = true 
-          userName = user.name
+          approved = true;
+          currentUser = user;
         }
         // Set warning if pin doesn't match
         else setWarning('block')
@@ -24,16 +24,15 @@ export default function Login() {
       // Set warning if no user found
       if(counter === DollarsBankDB.length) setWarning('block');
     })
-
-    if(approved) gotoMain(userID, pin, userName);
-
+    if(approved) gotoMain(userID, pin, currentUser);
   }
 
-  const gotoMain = (userID, pin, userName) => {
+  const gotoMain = (userID, pin, user) => {
     // Create session token
     const userToken = 'TK321654' + userID + pin + '456123';
     sessionStorage.setItem('dollarsBankToken', userToken);
-    sessionStorage.setItem('dollarsBankUser', userName);
+    sessionStorage.setItem('dollarsBankUser', JSON.stringify(user));
+    
     // Move to main
     window.location.href = 'main';
   }

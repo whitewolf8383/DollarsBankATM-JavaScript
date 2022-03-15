@@ -6,7 +6,7 @@ import Header from './components/Header';
 //Pages
 import Login from './pages/Login';
 import Main from './pages/Main';
-import AccountBalance from './pages/AccountBalance';
+import Values from './pages/Values';
 import Transactions from './pages/Transactions';
 import PinUpdate from './pages/PinUpdate';
 import Withdraw from './pages/Withdraw';
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/main' element={<Main />} />
-          <Route path='/account-balance' element={<AccountBalance />} />
+          <Route path='/values' element={<Values />} />
           <Route path='/transactions' element={<Transactions />} />
           <Route path='/change-pin' element={<PinUpdate />} />
           <Route path='/withdraw' element={<Withdraw />} />

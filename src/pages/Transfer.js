@@ -3,32 +3,69 @@ import { Link } from 'react-router-dom';
 import '../componentsStyles/transactionStyles.css';
 
 export default function Transfer() {
-  const [user, setUser] = useState('User');
+  const [userInfo, setUserInfo] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [withdrawError, setWithdrawError] = useState('block');
   const [number, setNumber] = useState('0');
   const [amount, setAmount] = useState(0);
 
   const handleSubmit = () => {
-    console.log('Submit handled');
+    switch(number) {
+      case '1':
+        let tempCheckingAmount = parseFloat(userInfo.checking.accountBalance);
+        tempCheckingAmount -= parseFloat(amount);
+        if(tempCheckingAmount < 0){
+          setErrorMessage('Insufficient funds, Enter a different amount.');
+          setWithdrawError('block');
+        } else {
+          let tempSavingsAmount = parseFloat(userInfo.savings.accountBalance);
+          userInfo.checking.accountBalance = tempCheckingAmount;
+          tempSavingsAmount += parseFloat(amount);
+          userInfo.savings.accountBalance = tempSavingsAmount;
+          sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
+          console.log(userInfo.checking.accountBalance);
+          console.log(userInfo.savings.accountBalance);
+        }
+        break;
+      case '2':
+        let tempSavingsAmount = parseFloat(userInfo.savings.accountBalance);
+        tempSavingsAmount -= parseFloat(amount);
+        if(tempSavingsAmount < 0){
+          setErrorMessage('Insufficient funds, Enter a different amount.');
+          setWithdrawError('block');
+        } else {
+          let tempCheckingAmount = parseFloat(userInfo.checking.accountBalance);
+          userInfo.savings.accountBalance = tempSavingsAmount;
+          tempCheckingAmount += parseFloat(amount);
+          userInfo.checking.accountBalance = tempCheckingAmount;
+          sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
+          console.log(userInfo.checking.accountBalance);
+          console.log(userInfo.savings.accountBalance);
+        }
+        break;
+      default:
+        setErrorMessage('Incorrect option selection, must be "1" or "2"');
+        setWithdrawError('block');
+    }
   }
 
   const handleNumber = (event) => {
     setNumber(event.target.value);
-    console.log('Number ' + number);
   }
 
   const handleAmount = (event) => {
     setAmount(event.target.value);
-    console.log('Amount ' + amount);
   }
 
-  useEffect(() => {}, [number, amount])
+  useEffect(() => {
+    const user = window.sessionStorage.getItem('dollarsBankUser');
+    setUserInfo(JSON.parse(user));
+  }, [number, amount])
 
   return(
     <React.Fragment>
       <div className='transaction-div'>
-      <h2>Welcome {user}!</h2>
+      <h2>Welcome {userInfo.name}!</h2>
       <h2>Please make your transfer selection.</h2>
     </div>
     <div className='transaction-display-div'>

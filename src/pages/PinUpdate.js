@@ -3,26 +3,36 @@ import { Link } from 'react-router-dom';
 import '../componentsStyles/pinUpdateStyles.css';
 
 export default function PinUpdate() {
-  const [user, setUser] = useState('User');
-  const [newPin, setNewPin] = useState('000000');
+  const [userInfo, setUserInfo] = useState({});
+  const [newPin, setNewPin] = useState('0');
   const [pinError, setPinError] = useState('none');
 
   const handleUpdate = () => {
-    (newPin.length !== 6) 
-    ? setPinError('block') 
-    : console.log('Pin has been changed');
+    (newPin.length === 6) 
+    ? updatePin()
+    : setPinError('block');
   }
 
   const handleNewPin = (event) => {
     setNewPin(event.target.value);
   }
 
-  useEffect(() => {}, [newPin])
+  const updatePin = () => {
+    userInfo.userPin = newPin;
+    sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
+    alert('Pin has been changed');
+    window.location.href = 'main';
+  }
+
+  useEffect(() => {
+    const user = window.sessionStorage.getItem('dollarsBankUser');
+    setUserInfo(JSON.parse(user));
+  }, [newPin])
 
   return(
     <React.Fragment>
       <div className='pinupdate-div'>
-      <h2>Welcome {user}!</h2>
+      <h2>Welcome {userInfo.name}!</h2>
       <h2>Please enter your NEW PIN.</h2>
     </div>
     <div className='pinupdate-display-div'>
