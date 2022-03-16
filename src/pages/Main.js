@@ -29,6 +29,7 @@ export default function Main() {
       case '7':
         window.sessionStorage.removeItem('dollarsBankToken');
         window.sessionStorage.removeItem('dollarsBankUser');
+        window.sessionStorage.removeItem('dollarsBankTransactions');
         window.location.href = 'login';
         break
       default:

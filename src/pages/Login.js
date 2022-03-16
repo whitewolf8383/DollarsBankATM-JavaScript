@@ -32,7 +32,7 @@ export default function Login() {
     const userToken = 'TK321654' + userID + pin + '456123';
     sessionStorage.setItem('dollarsBankToken', userToken);
     sessionStorage.setItem('dollarsBankUser', JSON.stringify(user));
-    
+    sessionStorage.setItem('dollarsBankTransactions', JSON.stringify([]));
     // Move to main
     window.location.href = 'main';
   }

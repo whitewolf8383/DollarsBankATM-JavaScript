@@ -6,6 +6,7 @@ export default function PinUpdate() {
   const [userInfo, setUserInfo] = useState({});
   const [newPin, setNewPin] = useState('0');
   const [pinError, setPinError] = useState('none');
+  
 
   const handleUpdate = () => {
     (newPin.length === 6) 
@@ -20,6 +21,10 @@ export default function PinUpdate() {
   const updatePin = () => {
     userInfo.userPin = newPin;
     sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
+    let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+    const date = new Date().toLocaleDateString();
+    transactions.push('User PIN has been changed on ' + date);
+    sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
     alert('Pin has been changed');
     window.location.href = 'main';
   }

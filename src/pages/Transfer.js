@@ -23,8 +23,16 @@ export default function Transfer() {
           tempSavingsAmount += parseFloat(amount);
           userInfo.savings.accountBalance = tempSavingsAmount;
           sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-          console.log(userInfo.checking.accountBalance);
-          console.log(userInfo.savings.accountBalance);
+
+          // Save transaction
+          let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+          const date = new Date().toLocaleDateString();
+          transactions.push('Transfered from checking to savings, Amount of $' + amount +' on ' + date);
+          sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+          alert('Your transaction has processed.' +
+          '\nChecking account: $' + userInfo.checking.accountBalance + 
+          '\nSavings account: $' + userInfo.savings.accountBalance);
         }
         break;
       case '2':
@@ -39,8 +47,16 @@ export default function Transfer() {
           tempCheckingAmount += parseFloat(amount);
           userInfo.checking.accountBalance = tempCheckingAmount;
           sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-          console.log(userInfo.checking.accountBalance);
-          console.log(userInfo.savings.accountBalance);
+
+          // Save transaction
+          let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+          const date = new Date().toLocaleDateString();
+          transactions.push('Transfered from savings to checking, Amount of $' + amount +' on ' + date);
+          sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+          alert('Your transaction has processed.' +
+          '\nChecking account: $' + userInfo.checking.accountBalance + 
+          '\nSavings account: $' + userInfo.savings.accountBalance);
         }
         break;
       default:

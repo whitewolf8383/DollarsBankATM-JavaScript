@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Transaction from './Transaction';
 import '../componentsStyles/transactionsStyles.css';
-import transactions from '../dollarsBankTransactions.json';
 
 export default function Transactions() {
   const [user, setUser] = useState(window.sessionStorage.getItem('dollarsBankUser'));
   const [userInfo, setUserInfo] = useState(JSON.parse(user));
+  const [transactions, setTransactions] = useState(JSON.parse(window.sessionStorage.getItem('dollarsBankTransactions')));
 
   return(
     <React.Fragment>

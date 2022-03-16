@@ -11,19 +11,33 @@ export default function Deposit() {
 
   const handleSubmit = () => {
     switch(number) {
-      case '1':
+      case '1':{
         let tempCheckingAmount = parseFloat(userInfo.checking.accountBalance);
         tempCheckingAmount += parseFloat(amount);
         userInfo.checking.accountBalance = tempCheckingAmount;
         sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-        console.log(userInfo.checking.accountBalance);
+
+        // Save transaction
+        let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+        const date = new Date().toLocaleDateString();
+        transactions.push('Deposit to checking, Amount of $' + amount +' on ' + date);
+        sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+        alert("Your transaction has processed. Checking account: $" + userInfo.checking.accountBalance);}
         break;
-      case '2':
+      case '2':{
         let tempSavingsAmount = parseFloat(userInfo.savings.accountBalance);
         tempSavingsAmount += parseFloat(amount);
         userInfo.savings.accountBalance = tempSavingsAmount;
         sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-        console.log(userInfo.savings.accountBalance);
+
+        // Save transaction
+        let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+        const date = new Date().toLocaleDateString();
+        transactions.push('Deposit to savings, Amount of $' + amount +' on ' + date);
+        sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+        alert("Your transaction has processed. Savings account: $" + userInfo.savings.accountBalance);}
         break;
       default:
         setErrorMessage('Incorrect option selection, must be "1" or "2"');

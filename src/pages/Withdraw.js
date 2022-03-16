@@ -20,7 +20,14 @@ export default function Withdraw() {
         } else {
           userInfo.checking.accountBalance = tempCheckingAmount;
           sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-          console.log(userInfo.checking.accountBalance);
+
+          // Save transaction
+          let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+          const date = new Date().toLocaleDateString();
+          transactions.push('Withdraw from checking, Amount of $' + amount +' on ' + date);
+          sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+          alert("Your transaction has processed. Checking account: $" + userInfo.checking.accountBalance);
         }
         break;
       case '2':
@@ -32,7 +39,14 @@ export default function Withdraw() {
         } else {
           userInfo.savings.accountBalance = tempSavingsAmount;
           sessionStorage.setItem('dollarsBankUser', JSON.stringify(userInfo));
-          console.log(userInfo.savings.accountBalance);
+
+          // Save transaction
+          let transactions = JSON.parse(sessionStorage.getItem('dollarsBankTransactions'));
+          const date = new Date().toLocaleDateString();
+          transactions.push('Withdraw from savings, Amount of $' + amount +' on ' + date);
+          sessionStorage.setItem('dollarsBankTransactions', JSON.stringify(transactions));
+
+          alert("Your transaction has processed. Savings account: $" + userInfo.savings.accountBalance);
         }
         break;
       default:
